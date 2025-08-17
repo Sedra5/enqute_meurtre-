@@ -81,8 +81,8 @@ Vérifie la cohérence des preuves contre le suspect principal.
 Le système calcule un score de suspicion basé sur 6 critères principaux :
 
 ### 1. Motifs (0-30 points)
-- **Héritage** (>100k€): 30 points
-- **Dettes** (>20k€): 25 points  
+- **Héritage** (>100k): 30 points
+- **Dettes** (>20k): 25 points  
 - **Licenciement**: 20 points
 - **Rivalité professionnelle**: 15 points
 
