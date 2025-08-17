@@ -162,7 +162,7 @@ Les règles de calcul peuvent être ajustées dans `rules/scoring.pl` selon les 
 ?- faiblesses_enquete.
 ```
 
-## 📝 Exemples de Requêtes Utiles
+## 📝 Requêtes Utiles
 
 ```prolog
 % Score d'un suspect spécifique
@@ -177,32 +177,3 @@ Les règles de calcul peuvent être ajustées dans `rules/scoring.pl` selon les 
 % Vérification d'alibi
 ?- alibi_verifie(sophie_laurent, Verifie).
 ```
-
-## 🎓 Applications Éducatives
-
-Ce système peut être utilisé pour :
-- **Formation des enquêteurs** : Simulation de cas réels
-- **Enseignement de Prolog** : Exemple concret de système expert
-- **Logique criminalistique** : Apprentissage du raisonnement déductif
-- **Analyse forensique** : Compréhension de la corrélation des preuves
-
-## 🤝 Contribution
-
-Pour contribuer au projet :
-1. Forkez le repository
-2. Créez une branche pour votre fonctionnalité
-3. Implémentez vos modifications dans les modules appropriés
-4. Testez avec des cas d'usage variés
-5. Soumettez une pull request
-
-## 📄 Licence
-
-Ce projet est distribué sous licence MIT. Voir le fichier LICENSE pour plus de détails.
-
-## 👨‍💻 Auteurs
-
-Développé comme système de démonstration pour l'apprentissage de Prolog et la simulation d'enquêtes criminelles.
-
----
-
-**Note**: Ce système est purement éducatif et ne doit pas être utilisé pour de véritables enquêtes criminelles. Les conclusions générées sont basées sur des algorithmes simplifiés et ne remplacent pas l'expertise humaine en criminalistique.
