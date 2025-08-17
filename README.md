@@ -1,4 +1,3 @@
-# enqute_meurtre
 # Système d'Enquête Policière en Prolog
 
 Un système expert développé en Prolog pour simuler et analyser des enquêtes criminelles. Le système utilise des faits et des règles d'inférence pour calculer des scores de suspicion et identifier des suspects potentiels.
@@ -16,27 +15,26 @@ Un système expert développé en Prolog pour simuler et analyser des enquêtes 
 ## 📁 Architecture Modulaire
 
 ```
-enquete-prolog/
+enquete-meurtre/
 ├── README.md
-├── main.pl                 # Point d'entrée principal
+├── main.pl                 # Point d'entrée principal avec aide
 ├── data/
-│   ├── personnes.pl        # Base de données des personnes
-│   ├── preuves.pl          # Preuves physiques et témoignages
-│   └── comportements.pl    # Comportements et antécédents
-├── rules/
-│   ├── scoring.pl          # Règles de calcul des scores
-│   ├── classification.pl   # Classification des suspects
-│   └── analysis.pl         # Règles d'analyse avancée
-└── reports/
-    ├── generation.pl       # Génération de rapports
-    └── queries.pl          # Requêtes utiles pour les enquêteurs
+│   ├── personnes.pl        # Personnes, relations, motifs, accès
+│   ├── preuves.pl          # Preuves physiques, témoignages, alibis
+│   └── comportements.pl    # Comportements suspects et antécédents
+├── regles/
+│   ├── scoring.pl          # Calcul des scores de suspicion
+│   ├── classification.pl   # Classification et suspect principal
+│   └── analysis.pl         # Analyse avancée et cohérence
+└── rapports/
+    ├── generation.pl       # Génération des rapports principaux
+    └── queries.pl          # Requêtes spécialisées pour enquêteurs
 ```
 
 ## 🚀 Installation et Utilisation
 
 ### Prérequis
 - SWI-Prolog installé sur votre système
-- Connaissances de base en Prolog
 
 ### Lancement
 ```bash
@@ -44,25 +42,32 @@ $ swipl
 ?- [main].
 ```
 
-### Requêtes Principales
+Le système s'initialise automatiquement et affiche l'aide disponible.
+
+### Commandes Principales
+
+Pour voir toutes les commandes disponibles :
+```prolog
+?- help.
+```
 
 #### Rapport Complet d'Enquête
 ```prolog
 ?- rapport_enquete.
 ```
-Génère un rapport détaillé avec l'analyse de tous les suspects.
+Génère un rapport détaillé avec l'analyse de tous les suspects, le suspect principal, les preuves et recommandations.
 
 #### Liste des Suspects
 ```prolog
 ?- tous_suspects.
 ```
-Affiche tous les suspects avec leurs scores de suspicion.
+Affiche tous les suspects avec leurs scores de suspicion et niveaux.
 
 #### Analyse Spécifique d'un Suspect
 ```prolog
 ?- analyser_suspect(jean_martin).
 ```
-Analyse détaillée d'un suspect particulier.
+Analyse détaillée d'un suspect avec décomposition des scores.
 
 #### Identification du Suspect Principal
 ```prolog
@@ -75,6 +80,12 @@ Identifie le suspect avec le score le plus élevé.
 ?- coherence_enquete.
 ```
 Vérifie la cohérence des preuves contre le suspect principal.
+
+#### Analyse des Faiblesses
+```prolog
+?- faiblesses_enquete.
+```
+Identifie les points faibles de l'enquête (alibis solides, manque de preuves).
 
 ## 📊 Système de Scoring
 
@@ -126,6 +137,33 @@ Le système inclut une affaire complète avec :
 - **Témoignages** de voisins et passants
 - **Motifs** financiers et personnels
 
+## 🔧 Requêtes Avancées
+
+### Recherche par Type de Preuve
+```prolog
+?- preuves_type(empreintes_digitales).
+```
+
+### Suspects par Motif
+```prolog
+?- suspects_par_motif(heritage).
+```
+
+### Suspects sans Alibi
+```prolog
+?- suspects_sans_alibi.
+```
+
+### Preuves par Fiabilité
+```prolog
+?- preuves_par_fiabilite(haute).
+```
+
+### Détection de Complices Potentiels
+```prolog
+?- lien_complice_potentiel(X, Y).
+```
+
 ## 🛠️ Extension du Système
 
 ### Ajouter un Nouveau Suspect
@@ -143,26 +181,12 @@ preuve_physique(nouveau_type, suspect, lieu, fiabilite).
 ```
 
 ### Modifier les Règles de Scoring
-Les règles de calcul peuvent être ajustées dans `rules/scoring.pl` selon les besoins spécifiques de l'enquête.
+Les règles de calcul peuvent être ajustées dans `regles/scoring.pl` selon les besoins spécifiques de l'enquête.
 
-## 🔧 Fonctionnalités Avancées
+### Ajouter de Nouvelles Analyses
+Créez de nouvelles règles dans `regles/analysis.pl` pour des analyses personnalisées.
 
-### Détection de Complices Potentiels
-```prolog
-?- lien_complice_potentiel(X, Y).
-```
-
-### Recherche par Type de Preuve
-```prolog
-?- preuves_type(empreintes_digitales).
-```
-
-### Analyse des Faiblesses
-```prolog
-?- faiblesses_enquete.
-```
-
-## 📝 Requêtes Utiles
+## 📝 Exemples de Requêtes Utiles
 
 ```prolog
 % Score d'un suspect spécifique
@@ -176,4 +200,76 @@ Les règles de calcul peuvent être ajustées dans `rules/scoring.pl` selon les 
 
 % Vérification d'alibi
 ?- alibi_verifie(sophie_laurent, Verifie).
+
+% Relations d'une personne
+?- relation(marie_dubois, X, Type).
+
+% Motifs financiers importants
+?- motif(X, _, Montant), Montant > 100000.
 ```
+
+## 🚀 Démarrage Rapide
+
+1. **Charger le système** :
+   ```prolog
+   ?- [main].
+   ```
+
+2. **Voir l'aide** :
+   ```prolog
+   ?- help.
+   ```
+
+3. **Générer un rapport complet** :
+   ```prolog
+   ?- rapport_enquete.
+   ```
+
+4. **Analyser le suspect principal** :
+   ```prolog
+   ?- suspect_principal(X), analyser_suspect(X).
+   ```
+
+## 📋 Résultats Attendus
+
+Avec les données incluses, le système devrait identifier **Jean Martin** comme suspect principal avec un score élevé basé sur :
+- Motif d'héritage important (500k€)
+- Alibi non vérifié
+- Preuves ADN de haute fiabilité
+- Témoignage de dispute
+- Comportement nerveux
+
+## 🔍 Structure des Données
+
+### Types de Relations
+- `epoux` : Relations conjugales
+- `ami` : Relations d'amitié
+- `collegue` : Relations professionnelles
+- `employe` : Relations employeur/employé
+
+### Niveaux de Fiabilité des Preuves
+- `haute` : Preuves irréfutables (ADN, empreintes claires)
+- `moyenne` : Preuves probantes mais contestables
+- `faible` : Indices légers, présomptions
+
+### Types de Comportements Suspects
+- `nervosite_interrogatoire`
+- `contradictions_recit`
+- `fuite_interrogatoire`
+- `calme_inhabituel`
+
+## 🤝 Contribution
+
+Pour contribuer au projet :
+1. Forkez le repository
+2. Créez une branche pour votre fonctionnalité
+3. Respectez l'architecture modulaire existante
+4. Ajoutez des tests dans les modules appropriés
+5. Documentez les nouvelles règles et prédicats
+6. Soumettez une pull request
+
+### Conventions de Code
+- Utilisez des noms explicites pour les prédicats
+- Commentez les règles complexes
+- Respectez la séparation des responsabilités par module
+- Testez avec `?- help.` après modifications
